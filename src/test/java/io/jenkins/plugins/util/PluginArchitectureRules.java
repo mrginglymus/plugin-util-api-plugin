@@ -13,6 +13,7 @@ import com.tngtech.archunit.lang.ArchRule;
 import com.tngtech.archunit.lang.ConditionEvents;
 import com.tngtech.archunit.lang.SimpleConditionEvent;
 
+import org.junit.runner.RunWith;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
 import org.kohsuke.stapler.bind.JavaScriptMethod;
@@ -50,6 +51,7 @@ public final class PluginArchitectureRules {
             noClasses().that().haveSimpleNameEndingWith("Test")
                     .and().haveSimpleNameNotContaining("_jmh")
                     .and().doNotHaveModifier(JavaModifier.ABSTRACT)
+                    .and().areNotAnnotatedWith(RunWith.class)
                     .and().haveSimpleNameNotEndingWith("ITest")
                     .should().bePublic();
 
